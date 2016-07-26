@@ -20,8 +20,6 @@ In "pipe-socket" we use Amazon webhook services to set up a "webhook" and create
 
 
 Support Bottom Feeders 
-                          
-                          
-                          ![alt text][logo]
+                        ![alt text][logo]
 [logo]:https://s3-us-west-1.amazonaws.com/storage-platform.cloud.appcelerator.com/pUWKoLkaVjoozttRq2KmEKV96SDzeidL/photos/aa/09/5796c4b32dcaff0920115119/GIThub_original.jpg
 If you like it Share, Support! This is kinda my first public posting, so let me know what you think. Im starting a bottom-feeder movement as well kind of thing. Its my own Comapny I started encouraging Software Development for the masses. So please purchase a shirt and support! Become a Bottom-Feeder today!  ^_^
