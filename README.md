@@ -1,5 +1,9 @@
-# pipe-socket
-Titanium SDK5+ friendly Websocket Module for IOS that enables Websocket communication with remote servers, allowing "Real-Time" Communication. 
+pipe-socket
+======
+
+###Titanium SDK5+ Websocket  
+
+IOS Module that is Websocket communication with remote servers, allowing "Real-Time" Communication. 
 
 "pipe-socket" utilizes a Pusher based "Real-Time" Management System. In this System we will devices will send messages to all other devices connected on a specific "channel". Pusher made it mandatory that the private channels implement some type of encyption/authentication over the communication.  
 
