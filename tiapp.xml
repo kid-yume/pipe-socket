@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+    <id>com.bottomfeeders.websocketExample</id>
+    <name>WebsocketExample</name>
+    <version>1.0</version>
+    <publisher>Kid_Yume</publisher>
+    <url/>
+    <description>undefined</description>
+    <copyright>2016 by Kid_Yume</copyright>
+    <icon>appicon.png</icon>
+    <fullscreen>false</fullscreen>
+    <navbar-hidden>false</navbar-hidden>
+    <analytics>true</analytics>
+    <guid>7f67736e-313d-48ef-9eee-577251a705da</guid>
+    <property name="ti.ui.defaultunit" type="string">dp</property>
+    <ios>
+        <enable-launch-screen-storyboard>true</enable-launch-screen-storyboard>
+        <plist>
+            <dict>
+                <key>UISupportedInterfaceOrientations~iphone</key>
+                <array>
+                    <string>UIInterfaceOrientationPortrait</string>
+                </array>
+                <key>UISupportedInterfaceOrientations~ipad</key>
+                <array>
+                    <string>UIInterfaceOrientationPortrait</string>
+                    <string>UIInterfaceOrientationPortraitUpsideDown</string>
+                    <string>UIInterfaceOrientationLandscapeLeft</string>
+                    <string>UIInterfaceOrientationLandscapeRight</string>
+                </array>
+                <key>UIRequiresPersistentWiFi</key>
+                <false/>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+                <key>UIStatusBarHidden</key>
+                <false/>
+                <key>UIStatusBarStyle</key>
+                <string>UIStatusBarStyleDefault</string>
+            </dict>
+        </plist>
+    </ios>
+    <android xmlns:android="http://schemas.android.com/apk/res/android"/>
+    <mobileweb>
+        <precache/>
+        <splash>
+            <enabled>true</enabled>
+            <inline-css-images>true</inline-css-images>
+        </splash>
+        <theme>default</theme>
+    </mobileweb>
+    <modules>
+        <module platform="commonjs">ti.cloud</module>
+        <module platform="iphone">com.bottomfeeders.websocket</module>
+        <module platform="iphone">guy.mcdooooo.tipop</module>
+    </modules>
+    <deployment-targets>
+        <target device="android">true</target>
+        <target device="ipad">true</target>
+        <target device="iphone">true</target>
+        <target device="mobileweb">true</target>
+        <target device="windows">false</target>
+    </deployment-targets>
+    <sdk-version>5.3.1.GA</sdk-version>
+    <property name="appc-app-id" type="string">579514d14d01129b6327e105</property>
+    <property name="acs-authbase-url-development" type="string">https://secure-identity.cloud.appcelerator.com</property>
+    <property name="acs-base-url-development" type="string">https://api.cloud.appcelerator.com</property>
+    <property name="acs-oauth-secret-development" type="string">dv77Z4rDa5wDNjwMbJO7oUILdJX5f2v2</property>
+    <property name="acs-oauth-key-development" type="string">bYnlJJMqzEFve3u8QnKMvSDv2JR9PitB</property>
+    <property name="acs-api-key-development" type="string">XzyQOvSK38KFXpnmm0X9kYIEBU6e8cLg</property>
+    <property name="acs-username-development" type="string">appc_app_user_dev</property>
+    <property name="acs-password-development" type="string">js25Dyn37riZaIUZSJ</property>
+    <property name="acs-authbase-url-production" type="string">https://secure-identity.cloud.appcelerator.com</property>
+    <property name="acs-base-url-production" type="string">https://api.cloud.appcelerator.com</property>
+    <property name="acs-oauth-secret-production" type="string">cthQUcKyc44RgPBnDSwMbczR5Wl01aax</property>
+    <property name="acs-oauth-key-production" type="string">x9YqCFitQpdMn0DEzkvu2B3pIVxWrI9u</property>
+    <property name="acs-api-key-production" type="string">c0EcMDChLWUXGOVFBlNcWbGNFvNs5v98</property>
+    <property name="acs-username-production" type="string">appc_app_user</property>
+    <property name="acs-password-production" type="string">1AY6UBwOFmjotl6kUR</property>
+    <property name="appc-org-id" type="string">100023777</property>
+    <property name="appc-creator-user-id" type="string">3eef0034-979b-43ad-885c-5c382e51044e</property>
+</ti:app>
