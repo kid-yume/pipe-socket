@@ -54,7 +54,7 @@ There was an issue in Titaniums Proxy Object and I believe i found it had someth
 ###3.Receiving Successful and Error Events when establishing a Connection 
 Once Connected typically a server will send a response letting you know if the connection was successfull or not. We can listen for this through the `"connected"` and `"error"` . Once recieved you are able to store the SocketID you recieve like so upon a successful connection or display the error message recieved.
 
-##Sucessful Events
+##Sucessful  & Error Events
 ```javascript
 var WS = require("com.bottomfeeders.websocket");
 var url = 'wss://wss.pusherapp.com:443/app/'+APP_KEY+'?client=js&version=3.1&protocol=5';
@@ -79,8 +79,6 @@ var defaults = {
 		
 	});
 	
-##Error Events
-	
 	WSView.addEventListener('error',function(e){
 		if(e.data != null){
 			
@@ -97,7 +95,7 @@ var defaults = {
 ###3.Subscribing to Channels through Pusher
 There are two types of Channels through Pusher. Public and Private. However, The challenge seen here becomes that through there public channels devices can only recieve events and cannot send events through the websockets. I will show how to add public Channels, **but** in order to send events through the websocket you must join a `Private` Channel! Otherwise you will have to submit POST request via the API in order to fire an event from the phone.
 
-##Connecting To Public Channels **.subscribeToChannels([channel Names])**
+####Connecting To Public Channels **.subscribeToChannels([channel Names])**
 ```javascript
 var WS = require("com.bottomfeeders.websocket");
 var url = 'wss://wss.pusherapp.com:443/app/'+APP_KEY+'?client=js&version=3.1&protocol=5';
@@ -110,7 +108,7 @@ var defaults = {
 ```
 
 
-##Connecting To Private Channels **.subscribeToPrivateChannel({auth:[signature],channel:[channelName]})**
+####Connecting To Private Channels **.subscribeToPrivateChannel({auth:[signature],channel:[channelName]})**
 ```javascript
 var WS = require("com.bottomfeeders.websocket");
 var url = 'wss://wss.pusherapp.com:443/app/'+APP_KEY+'?client=js&version=3.1&protocol=5';
@@ -124,10 +122,10 @@ var channel = "private-channel1";
 			WSView.subscribeToPrivateChannel({"auth":signature+"","channel":channel+""});
 		
 ```
-###Side NOTE:
+#####Side NOTE:
  PLEASE do Private Channels one channel at a time. IF yopu have multiple channels you would like to do create an array and loop through the array of channels. Sadly for version 1 it does not support bulk subscription for the private channels like the public channels. Also another thing we should cover is that authentication for Private channels are normally done through a remote server of your choosing. Typically you would send the SocketID you required from a successful connection and send that to a server that would give you your signature or I like to think of it as your password in order for you to successfully join the channel. For the purpose of this example it was quicker to just perform the signing of the Signature with a `HMAC256HEX` of `SocketID:(Name of the Channel)`. 
 
-###3.Receiving Successful and Error Events when connecting to Channels
+##3.Receiving Successful and Error Events when connecting to Channels
 When Connecting to a channel, typically a server will send a response letting you know if the connection was successfull or not. We can listen for this through the `"channelSubscriptionSuccess"` and `"channelSubscriptionError"` . Once recieved you are able to store the SocketID you recieve like so upon a successful connection or display the error message recieved.
 
 ```javascript
@@ -169,9 +167,8 @@ var defaults = {
 ```
 
 ###3.Listening and receiving Channel Events once you have successfully Subscribed
-Once you are connected to a channel, whenever the module receives any incoming data from the server it will send it will fire an event based on the channel the message is from. For example since we named our `Private` channel `private-channel1` so the event listener we will have to add to `WSVIEW` will be `WSVIEW.addEventListener('private-channel1',function(e){})`.
+Once you are connected to a channel, whenever the module receives any incoming data from the server it will send it will fire an event based on the channel the message is from. For example since we named our `Private` channel `private-channel1`, the event listener we will have to add will be named the same thing. 
 
-##Listening 
 ```javascript
 var WS = require("com.bottomfeeders.websocket");
 var url = 'wss://wss.pusherapp.com:443/app/'+APP_KEY+'?client=js&version=3.1&protocol=5';
@@ -186,15 +183,11 @@ var channel = "private-channel1";
 		
 		   WSView.addEventListener('private-channel1',function(e){
 		if(e.data != null){
-			//mainScreen.newMessage({name:e.data.name,content:e.data.message,time:"WIP....",likes:0});
 			Ti.API.info('got message news'+ e.data);
 			var messOb = JSON.parse(e.data);
 			var messOb2 = JSON.parse(messOb.data);
 			var messOb3 = messOb2.data;
-			exView.updateLog("Incoming Message!");
-			exView.updateLogNo(JSON.stringify(messOb3));
-			
-			//mainView.newMessage({name:messOb3.fName,time:"seconds ago",content:messOb3.message,likes:0});
+			Ti.API.info('got message news'+ messOb3;
 		}else{
 			Ti.API.info("doesnt exist dude");
 		}
@@ -205,9 +198,52 @@ var channel = "private-channel1";
 		
 ```
 
+###3.Sending events trhough private channels - **`.sendMessage({object})`**
+The Sending of events through private channels is quite simple and done through the `.sendMessage()`. This method has the ability to take in an object. To send a pusher message your object must contain a `channel`, `event`, and `data` paramter. (also remeber that Pusher only allows the sending data over the WebSocket on Private channels) 
+
+####Side Note
+This must done on two devices or you must have the Pusher Management Console opened to verify the Message was dispersed over the channel, for messages do not get "echoed" back to the receiver, and vice-versa you can send test data from Pusher to verify your phone is receiving events! ^_^
+
+```javascript
+var WS = require("com.bottomfeeders.websocket");
+var url = 'wss://wss.pusherapp.com:443/app/'+APP_KEY+'?client=js&version=3.1&protocol=5';
+var channel = "private-channel1";
+    WSView.startConnection(url);
+   	encThis  = socketID+":"+channel;
+			
+			var signature = HMACSHA256(encThis,'899df492f106b93059f8');
+			Ti.API.info("encoding....."+ encThis+"with sig "+signature);
+			signature = pKey2 +":"+signature;
+			WSView.subscribeToPrivateChannel({"auth":signature+"","channel":channel+""});
+		
+		   WSView.addEventListener('private-channel1',function(e){
+		if(e.data != null){
+			Ti.API.info('got message news'+ e.data);
+			var messOb = JSON.parse(e.data);
+			var messOb2 = JSON.parse(messOb.data);
+			var messOb3 = messOb2.data;
+			Ti.API.info('got message news'+ messOb3;
+			var sendingMsg = {'fName':'SimulatorTest','message':('This a test Messsage')};
+			WSView.sendMessage({"channel":"private-channel1","event":"client-NewsFeed","data":sendingMsg});
+		
+		}else{
+			Ti.API.info("doesnt exist dude");
+		}
+		
+	});
+		
+		
+		
+```
+
+##What About logging!!
+So the issue that comes into play when playing with Real time Notifications is how do we store data, so that we may review or display History? Typically one would Post a request to a server that Would process the request, store to database, and forward the request on to Pusher to disperse to the connected devices. If you decide to use Pusher I suggest using their "Webhook URL"  feature that will also forward incoming events to a URL you input. For this project I used Amazon Webhook. 
+<img src="https://s3-us-west-1.amazonaws.com/storage-platform.cloud.appcelerator.com/pUWKoLkaVjoozttRq2KmEKV96SDzeidL/photos/cd/df/57999f96183041092c28c849/Screen%20Shot%202016-07-28%20at%201.59.32%20AM_original.png" 
+alt="Pusher URL" width="240" height="180" border="10" />
+[alt text][logo]
+[logo]:https://s3-us-west-1.amazonaws.com/storage-platform.cloud.appcelerator.com/pUWKoLkaVjoozttRq2KmEKV96SDzeidL/photos/cd/df/57999f96183041092c28c849/Screen%20Shot%202016-07-28%20at%201.59.32%20AM_original.png
 
 
-
-#Dont Forget Please Support Bottom Feeders! ^_^ ![alt text][logo]
+#Dont Forget, Please Support Bottom Feeders! ^_^ ![alt text][logo]
 [logo]:https://s3-us-west-1.amazonaws.com/storage-platform.cloud.appcelerator.com/pUWKoLkaVjoozttRq2KmEKV96SDzeidL/photos/69/3e/5796c632df26e0092710df29/GIThub_original.jpg
-If you like it Share, Support! This is kinda my first public posting, so let me know what you think. Im starting a bottom-feeder movement as well kind of thing. Its my own Comapny I started encouraging Software Development for the masses. So please purchase a shirt and support here! Become a Bottom-Feeder today!  ^_^
+If you like it Share, Support! This is kinda our first public posting, so let us know what you guys think. Im starting a Bottom-Feeder movement, where around the clock support for fellow developers, will be available at any time to assist others with projects they have. I sometimes have found it difficult to reach out and get support when i need it, so Im striving to eliminate the feeling for fellow developers. if your an experienced developer and wish to become a Captain to aid in supporting others, please do not hesitate to contact me! ^_^
