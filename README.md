@@ -16,7 +16,7 @@ In "pipe-socket" we use Amazon webhook services to set up a "webhook" and create
 
 ##Why did i make this? 
 
-"pipe-socket" was encouraged from the Twis module however it was not 64-bit Compatible. So i had to do some homework and understand what it was excatly happening and i kinda created a miniature Static Socket Rocket Library(based off Facebooks Socket Rocket Library) and imported it into the module and just used that to create the same effect, then using the documentation from Pusher I was able to fine tune it to make it "Module" Friendly for lack of a better words!
+"pipe-socket" was encouraged when i was in the need for Real-Time Notifications while building an inventory system.   So i had to do some homework and understand what it was excatly happening and i kinda created a miniature Static Socket Rocket Library(based off Facebooks Socket Rocket Library) and imported it into this module and just used that to create the same effect, then using the documentation from Pusher I was able to fine tune it to make it "Module" Friendly for lack of a better words!
 
 
 ##Installation 
@@ -255,4 +255,7 @@ amazon site [here](https://zapier.com/zapbook/amazon-s3/webhook/).
 #Dont Forget, Please Support Bottom Feeders![alt text][logo]
 [logo]:https://s3-us-west-1.amazonaws.com/storage-platform.cloud.appcelerator.com/pUWKoLkaVjoozttRq2KmEKV96SDzeidL/photos/69/3e/5796c632df26e0092710df29/GIThub_original.jpg
 If you like it Share, Support! This is kinda our first public posting, so let us know what you guys think. Im starting a Bottom-Feeder movement, where around the clock support for fellow developers, will be available at any time to assist others with projects they have. I sometimes have found it difficult to reach out and get support when i need it, so Im striving to eliminate the feeling for fellow developers. if your an experienced developer and wish to become a Captain to aid in supporting others, please do not hesitate to contact me! ^_^ 
-We also Started a shirt Campaign to help raise some funds to aid in some start-up costs were facing and you can purchase a shirt [here](https://booster.com/86/bottom-feeders) and become a official Bottom Feeder! :)
+We also Started a shirt Campaign to help raise some funds to aid in some start-up costs were facing and you can purchase a shirt [here](https://booster.com/86/bottom-feeders) and become a official Bottom Feeder! :) 
+
+##Relase Skeleton with succcess of Shirt Campaign
+IF we can succeed our goal with getting Shirts sold we will make a how-to along with the skeleton of this module so that you may even tailor it to another servers specifications for your own personal use! ^_^
