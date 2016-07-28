@@ -176,7 +176,7 @@ var channel = "private-channel1";
     WSView.startConnection(url);
    	encThis  = socketID+":"+channel;
 			
-			var signature = HMACSHA256(encThis,'899df492f106b93059f8');
+			var signature = HMACSHA256(encThis,'[APP SECRET KEY]');
 			Ti.API.info("encoding....."+ encThis+"with sig "+signature);
 			signature = pKey2 +":"+signature;
 			WSView.subscribeToPrivateChannel({"auth":signature+"","channel":channel+""});
@@ -211,7 +211,7 @@ var channel = "private-channel1";
     WSView.startConnection(url);
    	encThis  = socketID+":"+channel;
 			
-			var signature = HMACSHA256(encThis,'899df492f106b93059f8');
+			var signature = HMACSHA256(encThis,'[APP SECRET KEY]');
 			Ti.API.info("encoding....."+ encThis+"with sig "+signature);
 			signature = pKey2 +":"+signature;
 			WSView.subscribeToPrivateChannel({"auth":signature+"","channel":channel+""});
