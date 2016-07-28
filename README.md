@@ -3,7 +3,10 @@ pipe-socket
 
 ###Titanium SDK5+ Websocket  
 ####Built with 5.2.2.GA
-IOS Module that enables Websocket communication with remote servers, allowing "Real-Time" Communication between devices. 
+IOS Module that enables Websocket communication with remote servers, allowing "Real-Time" Communication between devices. If you want to see how this works the video is available here:
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=https://youtu.be/TcZ_qSrfK1k" target="_blank"><img src="https://s3-us-west-1.amazonaws.com/storage-platform.cloud.appcelerator.com/pUWKoLkaVjoozttRq2KmEKV96SDzeidL/photos/20/08/57974cd0e46da10a78009a4b/final_original.jpg" 
+alt="IMAGE ALT TEXT HERE" width="600" height="350" border="10" /></a>
 
 
 ###Pusher Integration
